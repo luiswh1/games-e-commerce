@@ -21,7 +21,7 @@ export default function ImgMediaCard(props) {
     <Card className={classes.root}>
      <CardActionArea>
         <div>
-            <img image={props.product.image} alt="Product" />
+            <img src={props.product.image} alt="Product" />
         </div>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">

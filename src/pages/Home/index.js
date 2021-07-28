@@ -12,7 +12,6 @@ import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
 import { limpar } from '../../store/modules/cart/action';
 import products from '../../products.json';
 import GrowCard from '../../components/Card';
-import fifa from '../../assets/fifa-18.png';
 
 const data = products;
 console.log(data);
@@ -97,7 +96,6 @@ export default function Home() {
                     ))}
                 </Grid>
             </Container>
-            {fifa}
         </React.Fragment>
     );
 }
