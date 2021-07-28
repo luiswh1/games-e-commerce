@@ -1,60 +1,45 @@
-import React from "react";
-import Button from '@material-ui/core/Button';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
-import Grid from '@material-ui/core/Grid';
+
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { useDispatch } from "react-redux";
-import { add } from '../../store/modules/cart/action';
 
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 345,
+  },
+});
 
+export default function ImgMediaCard(props) {
+  const classes = useStyles();
 
-export default function GrowCard(props) {
-    const dispatch = useDispatch();
-
-    function addCart() {
-        dispatch(add({
-            nome: props.tier.title,
-            preco: props.tier.price,
-        }));
-    }
-
-    return (
-        <React.Fragment >
-            <Grid item key={props.tier.title} xs={12} sm={props.tier.title === 'Enterprise' ? 12 : 6} md={4}>
-                <Card>
-                    <CardHeader
-                        title={props.tier.title}
-                        subheader={props.tier.subheader}
-                        titleTypographyProps={{ align: 'center' }}
-                        subheaderTypographyProps={{ align: 'center' }}
-                        className={props.classes.cardHeader}
-                    />
-                    <CardContent>
-                        <div className={props.classes.cardPricing}>
-                            <Typography component="h2" variant="h3" color="textPrimary">
-                                ${props.tier.price}
-                            </Typography>
-                            <Typography variant="h6" color="textSecondary">/mês</Typography>
-                        </div>
-                        <ul>
-                            {props.tier.description.map((line) => (
-                                <Typography component="li" variant="subtitle1" align="center" key={line}>
-                                    {line}
-                                </Typography>
-                            ))}
-                        </ul>
-                    </CardContent>
-                    <CardActions>
-                        <Button fullWidth variant={props.tier.buttonVariant} color="primary"
-                        onClick={addCart}>
-                            {props.tier.buttonText}
-                        </Button>
-                    </CardActions>
-                </Card>
-            </Grid>
-        </React.Fragment>
-    )
+  return (
+    <Card className={classes.root}>
+     <CardActionArea>
+        <div>
+            <img image={props.product.image} alt="Product" />
+        </div>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+           {props.product.name}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            R${props.product.price}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        <Button size="small" color="primary">
+         Comprar
+        </Button>
+        <Button size="small" color="primary">
+          Adicionar no carrinho
+        </Button>
+      </CardActions>
+    </Card>
+  );
 }

@@ -10,7 +10,12 @@ import Container from '@material-ui/core/Container';
 import { useDispatch, useSelector } from 'react-redux';
 import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
 import { limpar } from '../../store/modules/cart/action';
+import products from '../../products.json';
+import GrowCard from '../../components/Card';
+import fifa from '../../assets/fifa-18.png';
 
+const data = products;
+console.log(data);
 
 const useStyles = makeStyles((theme) => ({
     '@global': {
@@ -65,6 +70,7 @@ export default function Home() {
     const dispatch = useDispatch();
     function limparCarrinho() {
         dispatch(limpar());
+        console.log(data)
     }
 
     return (
@@ -84,6 +90,14 @@ export default function Home() {
                 <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>Catálogo</Typography>
                 <Typography variant="h5" align="center" color="textSecondary" component="p">Confira o Catálogo de games disponiveis no momento.</Typography>
             </Container>
+            <Container maxWidth="md" component="main">
+                <Grid container spacing={5} alignItems="flex-end">
+                    {data.map((product) => (
+                       <GrowCard key={product.id} product={product}  classes={classes} />
+                    ))}
+                </Grid>
+            </Container>
+            {fifa}
         </React.Fragment>
     );
 }
